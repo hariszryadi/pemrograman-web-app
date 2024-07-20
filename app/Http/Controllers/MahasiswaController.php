@@ -13,4 +13,23 @@ class MahasiswaController extends Controller
 
         return view('mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
+
+    public function create()
+    {
+        return view('tambah-mahasiswa');
+    }
+
+    public function store(Request $request)
+    {
+        $nim = $request->nim;
+        $nama = $request->nama;
+
+        $store = Mahasiswa::create(['nim' => $nim, 'nama' => $nama]);
+
+        if ($store) {
+            return redirect()->route('list-mahasiswa');
+        } else {
+            return redirect()->back();
+        }
+    }
 }
