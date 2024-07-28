@@ -18,6 +18,7 @@
                     <th>#</th>
                     <th>NIM</th>
                     <th>Nama</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,14 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $item->nim }}</td>
                         <td>{{ $item->nama }}</td>
+                        <td>
+                            <a href="{{ route('edit-mahasiswa', ['nim' => $item->nim]) }}" class="btn btn-success">Edit</a>
+                            <a href="#" class="btn btn-danger" onclick="document.getElementById('delete-form').submit();">Hapus</a>
+                            <form id="delete-form" action="{{ route('hapus-mahasiswa', ['nim' => $item->nim]) }}" method="post">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

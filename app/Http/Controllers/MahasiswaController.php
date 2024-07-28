@@ -32,4 +32,33 @@ class MahasiswaController extends Controller
             return redirect()->back();
         }
     }
+
+    public function edit($nim)
+    {
+        $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+        return view('edit-mahasiswa', ['mahasiswa' => $mahasiswa]);
+    }
+
+    public function update(Request $request, $nim)
+    {
+        $update = Mahasiswa::where('nim', $nim)->update(['nama' => $request->nama]);
+
+        if ($update) {
+            return redirect()->route('list-mahasiswa');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function delete($nim)
+    {
+        $mahasiswa = Mahasiswa::where('nim', $nim);
+        $delete = $mahasiswa->delete();
+
+        if ($delete) {
+            return redirect()->route('list-mahasiswa');
+        } else {
+            return redirect()->back();
+        }
+    }
 }
