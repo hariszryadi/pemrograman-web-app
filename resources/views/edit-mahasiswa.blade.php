@@ -20,10 +20,13 @@
             </div>
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" name="nama" class="form-control" id="nama" value="{{ $mahasiswa->nama }}">
+                <input type="text" name="nama" class="form-control  @error('nama') is-invalid @enderror" id="nama" value="{{ $mahasiswa->nama }}">
+                @error('nama')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="index.php" class="btn btn-danger">Kembali</a>
+            <a href="{{ route('list-mahasiswa') }}" class="btn btn-danger">Kembali</a>
         </form>
     </div>
 </body>
