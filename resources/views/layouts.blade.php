@@ -52,10 +52,16 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->is('mahasiswa') ?  'active' : '' }}">
                 <a class="nav-link" href="{{ route('list-mahasiswa') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Mahasiswa</span></a>
+            </li>
+
+            <li class="nav-item {{ request()->is('profile') ?  'active' : '' }}">
+                <a class="nav-link" href="{{ route('profile') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Profile</span></a>
             </li>
 
             <!-- Divider -->
